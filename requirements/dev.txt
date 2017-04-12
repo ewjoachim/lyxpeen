@@ -1,0 +1,7 @@
+-e .
+
+-r test.txt
+
+jupyter
+django_extensions
+pyyaml

@@ -1,0 +1,3 @@
+[console_scripts]
+lyxpeen = lyxpeen.project.manage:main
+

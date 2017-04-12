@@ -1,0 +1,98 @@
+- model: songs.folder
+  pk: 19997dfb-6539-4854-a6ce-22b8218b9681
+  fields: {name: "Chansons de l'ann\xE9e", description: '', priority: 50}
+- model: songs.song
+  pk: effa860a-a4d9-48c6-8041-2536762951fb
+  fields: {folder: 19997dfb-6539-4854-a6ce-22b8218b9681, name: John Williams Is The
+      Man, xml_file: null, score_file: null}
+- model: songs.songpart
+  pk: 41951985-11da-4b12-932a-7b5183a10c5e
+  fields: {name: "T\xE9nor", song: effa860a-a4d9-48c6-8041-2536762951fb, section: 6c07769f-7610-4dd2-b86e-45b5a40b4782}
+- model: songs.songpart
+  pk: 6582c056-c947-4427-80e9-1c7be9843a60
+  fields: {name: Basse, song: effa860a-a4d9-48c6-8041-2536762951fb, section: 2ab5d71f-9248-47ec-9e75-57ad9141a47c}
+- model: songs.songpart
+  pk: 6a71ccdb-e0c4-45cd-bfe5-d8d4eeec47fd
+  fields: {name: Alto, song: effa860a-a4d9-48c6-8041-2536762951fb, section: 4e600add-9d0e-492f-ae5f-d558a0b0161a}
+- model: songs.songpart
+  pk: 88a872eb-aae0-4633-967d-6a23f95265ea
+  fields: {name: Soprano, song: effa860a-a4d9-48c6-8041-2536762951fb, section: 5541c0a4-b31b-4ab0-bc8a-101b7ffd48e7}
+- model: songs.section
+  pk: 2ab5d71f-9248-47ec-9e75-57ad9141a47c
+  fields: {name: Basse, color: '996633'}
+- model: songs.section
+  pk: 4e600add-9d0e-492f-ae5f-d558a0b0161a
+  fields: {name: Alto, color: '336699'}
+- model: songs.section
+  pk: 5541c0a4-b31b-4ab0-bc8a-101b7ffd48e7
+  fields: {name: Soprano, color: '339966'}
+- model: songs.section
+  pk: 6c07769f-7610-4dd2-b86e-45b5a40b4782
+  fields: {name: "T\xE9nor", color: '669933'}
+- model: songs.singerpart
+  pk: 0d98b28e-9d54-48e1-808e-126bc5ae33bc
+  fields: {main: true, song_part: 6582c056-c947-4427-80e9-1c7be9843a60, singer: 08b5597c-bf86-4e92-8435-9b9b80da8717}
+- model: songs.singerpart
+  pk: 313808cd-2ba3-40db-b3d2-34c46a0c2011
+  fields: {main: true, song_part: 6a71ccdb-e0c4-45cd-bfe5-d8d4eeec47fd, singer: 4cfbcaa3-e0ef-4ca6-9394-7269dd92b5a3}
+- model: auth.permission
+  pk: 39
+  fields: {name: Can delete song part, content_type: 13, codename: delete_songpart}
+- model: songs.singer
+  pk: 08b5597c-bf86-4e92-8435-9b9b80da8717
+  fields: {user: 2, main_section: 2ab5d71f-9248-47ec-9e75-57ad9141a47c, active: true}
+- model: songs.singer
+  pk: 4cfbcaa3-e0ef-4ca6-9394-7269dd92b5a3
+  fields: {user: 3, main_section: 4e600add-9d0e-492f-ae5f-d558a0b0161a, active: true}
+- model: songs.songfile
+  pk: 8c012e45-1e83-4a93-aecd-e538714dfe5c
+  fields: {active: true, uploaded_by: 2, uploaded_at: !!timestamp '2017-06-18 11:43:32.981311+00:00',
+    path: jwitm2.xml, song: effa860a-a4d9-48c6-8041-2536762951fb, is_xml: true, is_score: false}
+- model: auth.user
+  pk: 1
+  fields:
+    # azerazer
+    password: pbkdf2_sha256$36000$Zx05O3uW0ogc$OBDL4ZiVvOszH19JBb7qDh8MdjWLn2Ae+rRTHbDqVNs=
+    last_login: 2017-06-18 11:08:48.019237+00:00
+    is_superuser: true
+    username: a
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: true
+    is_active: true
+    date_joined: 2017-06-18 11:08:26.582118+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    # plplplpl
+    password: pbkdf2_sha256$36000$IEl33y89CyDf$tiRZ/C9+mxkD5prb2+/EkyEb2TDoIU6vwpYaCNclUbU=
+    last_login: null
+    is_superuser: false
+    username: joachim
+    first_name: Joachim
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2017-06-18 11:09:21+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 3
+  fields:
+    # plplplpl
+    password: pbkdf2_sha256$36000$X7aZqG96IshB$Ju3E0ugO1w1sTHsP/efeyRQTIK8I8hefjEJbK06jp0E=
+    last_login: null
+    is_superuser: false
+    username: eve
+    first_name: Eve
+    last_name: ''
+    email: ''
+    is_staff: false
+    is_active: true
+    date_joined: 2017-06-18 11:10:00+00:00
+    groups: []
+    user_permissions: []

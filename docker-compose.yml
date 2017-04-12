@@ -1,0 +1,22 @@
+version: '2.1'
+services:
+  lyxpeen:
+    build: .
+    command: tail -f /dev/null
+    volumes:
+      - ".:/root/lyxpeen:ro"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      PGHOST: postgres
+      PGUSER: lyxpeen
+      PGPASSWORD: lyxpeen
+      PGNAME: lyxpeen
+
+  postgres:
+    image: "postgres:9.6"
+    environment:
+      POSTGRES_USER: lyxpeen
+      POSTGRES_PASSWORD: lyxpeen
