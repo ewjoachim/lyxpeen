@@ -20,4 +20,6 @@ lyxpeen/songs/tests.py
 lyxpeen/songs/urls.py
 lyxpeen/songs/views.py
 lyxpeen/songs/migrations/0001_initial.py
+lyxpeen/songs/migrations/0002_auto_20170618_1054.py
+lyxpeen/songs/migrations/0003_auto_20170618_1133.py
 lyxpeen/songs/migrations/__init__.py

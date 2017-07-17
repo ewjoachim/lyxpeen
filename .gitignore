@@ -1,2 +1,3 @@
 lyxpeen/files/*
 lyxpeen/db.sqlite3
+*.egg-info/*

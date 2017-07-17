@@ -3,56 +3,32 @@ from . import models
 
 
 class FolderSerializer(serializers.ModelSerializer):
-    songs = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='song-detail'
-    )
+    songs = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = models.Folder
         fields = ["id", "name", "description", "priority", "songs"]
 
 
+class SongPartSerializer(serializers.ModelSerializer):
+    singer_parts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    class Meta:
+        model = models.SongPart
+        fields = ["id", "name", "section", "song", "singer_parts"]
+
+
 class SongSerializer(serializers.ModelSerializer):
-    song_parts = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='songpart-detail'
-    )
-    files = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='songfile-detail'
-    )
+    song_parts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    files = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = models.Song
         fields = ["id", "folder", "name", "xml_file", "score_file", "song_parts", "files"]
 
 
-class SongPartSerializer(serializers.ModelSerializer):
-    singer_parts = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='singerpart-detail'
-    )
-    class Meta:
-        model = models.SongPart
-        fields = ["id", "name", "section", "song", "singer_parts"]
-
-
 class SectionSerializer(serializers.ModelSerializer):
-    song_parts = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='songpart-detail'
-    )
-    singers = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='singer-detail'
-    )
+    song_parts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    singers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = models.Section
         fields = ["id", "name", "color", "song_parts", "singers"]
@@ -65,17 +41,13 @@ class SingerPartSerializer(serializers.ModelSerializer):
 
 
 class SingerSerializer(serializers.ModelSerializer):
-    singer_parts = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='singerpart-detail'
-    )
+    singer_parts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = models.Singer
-        fields = ["id", "user", "main_section", "active", "singer_parts"]
+        fields = ["id", "user", "main_section", "is_active", "singer_parts"]
 
 
 class SongFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SongFile
-        fields = ["id", "active", "path", "song", "is_xml", "is_score"]
+        fields = ["id", "is_active", "path", "song", "is_xml", "is_score"]

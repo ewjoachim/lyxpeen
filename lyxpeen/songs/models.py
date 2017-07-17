@@ -1,13 +1,27 @@
-import uuid
 from django.db import models
 from django.conf import settings
 
+from lyxpeen.project.helpers import UUIDPkMixin
 
-class UUIDPkMixin(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
-    class Meta:
-        abstract = True
+COLORS = [
+    ("aqua", "#7fdbff"),
+    ("black", "#111111"),
+    ("blue", "#0074d9"),
+    ("fuchsia", "#f012be"),
+    ("gray", "#aaaaaa"),
+    ("green", "#2ecc40"),
+    ("lime", "#01ff70"),
+    ("maroon", "#85144b"),
+    ("navy", "#001f3f"),
+    ("olive", "#3d9970"),
+    ("orange", "#ff851b"),
+    ("purple", "#b10dc9"),
+    ("red", "#ff4136"),
+    ("silver", "#dddddd"),
+    ("teal", "#39cccc"),
+    ("yellow", "#ffdc00"),
+    ('white', "#ffffff"),
+]
 
 
 class Folder(UUIDPkMixin, models.Model):
@@ -58,7 +72,7 @@ class Section(UUIDPkMixin, models.Model):
     The choir has sections (bass, soprano, ...)
     """
     name = models.CharField(max_length=100)
-    color = models.CharField(max_length=6)
+    color = models.CharField(max_length=6, choices=[(color, color) for color in COLORS])
 
     def __str__(self):
         return self.name
@@ -85,8 +99,7 @@ class Singer(UUIDPkMixin, models.Model):
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     main_section = models.ForeignKey(Section, related_name='singers', on_delete=models.PROTECT)
-    active = models.BooleanField(default=True)
-
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.username
@@ -100,16 +113,19 @@ class SongFile(UUIDPkMixin, models.Model):
     """
     Files are linked to songs. xml files can be used for generation features.
     """
-    active = models.BooleanField(default=True)
+    path = models.FileField()
+
+    song = models.ForeignKey(Song, related_name='files')
+
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    path = models.FileField()
-    song = models.ForeignKey(Song, related_name='files')
+
+    is_active = models.BooleanField(default=True)
     is_xml = models.BooleanField(default=False)
     is_score = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.path
+        return self.path.path
 
     class Meta:
         app_label = "songs"
