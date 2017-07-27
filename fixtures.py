@@ -49,9 +49,9 @@ for song in [song_roc, song_jwitm, song_astro]:
 
 users = []
 singers = []
-singer_data = [("alphonse", basse), ("beatrice", alto), ("charles", tenor),
-               ("damien", basse), ("elodie", soprano), ("francine", alto),
-               ("gaston", tenor), ("hermionne", soprano)]
+singer_data = [("ning", basse), ("frantisek", alto), ("lom-ali", tenor),
+               ("mads", basse), ("谷中", soprano), ("yorda", alto),
+               ("billy", tenor), ("tora", soprano)]
 
 for name, section in singer_data:
     user = post("/api/users/", {
@@ -73,7 +73,7 @@ for name, section in singer_data:
                 "singer": singer["id"],
             })
 
-# francine is also soprano on rains of castamere
+# yorda is also soprano on rains of castamere
 post("/api/singer_parts/", {
     "main": False,
     "song_part": song_parts[3]["id"],
