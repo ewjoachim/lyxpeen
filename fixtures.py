@@ -68,14 +68,14 @@ for name, section in singer_data:
     for song_part in song_parts:
         if song_part["section"] == section["id"]:
             post("/api/singer_parts/", {
-                "main": True,
+                "is_main": True,
                 "song_part": song_part["id"],
                 "singer": singer["id"],
             })
 
 # yorda is also soprano on rains of castamere
 post("/api/singer_parts/", {
-    "main": False,
+    "is_main": False,
     "song_part": song_parts[3]["id"],
     "singer": singers[5]["id"],
 })
