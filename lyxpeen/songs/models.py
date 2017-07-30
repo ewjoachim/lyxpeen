@@ -85,7 +85,7 @@ class SingerPart(UUIDPkMixin, models.Model):
     """
     A given singer can sing a given song part
     """
-    is_main = models.BooleanField(default=True)
+    is_main_part = models.BooleanField(default=True)
     song_part = models.ForeignKey(SongPart, related_name="singer_parts")
     singer = models.ForeignKey("Singer", related_name="singer_parts")
 

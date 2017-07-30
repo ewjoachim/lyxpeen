@@ -37,7 +37,7 @@ class SectionSerializer(serializers.ModelSerializer):
 class SingerPartSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SingerPart
-        fields = ["id", "is_main", "song_part", "singer"]
+        fields = ["id", "is_main_part", "song_part", "singer"]
 
 
 class SingerSerializer(serializers.ModelSerializer):
