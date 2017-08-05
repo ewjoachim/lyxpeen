@@ -30,11 +30,17 @@ song_astro = post("/api/songs/", {
     "name": "Astroboy",
 })
 
+section_defs = [
+    ("Basse", "red"),
+    ("Ténor", "yellow"),
+    ("Alto", "green"),
+    ("Soprano", "blue")]
 sections = []
-for section, color in [("Basse", "red"), ("Ténor", "yellow"), ("Alto", "green"), ("Soprano", "blue")]:
+for order_key, (section, color) in enumerate(section_defs, 1):
     sections.append(post("/api/sections/", {
         "name": section,
         "color": color,
+        "order_key": order_key,
     }))
 basse, tenor, alto, soprano = sections
 

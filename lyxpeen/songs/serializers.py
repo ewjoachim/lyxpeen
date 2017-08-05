@@ -31,7 +31,7 @@ class SectionSerializer(serializers.ModelSerializer):
     singers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = models.Section
-        fields = ["id", "name", "color", "song_parts", "singers"]
+        fields = ["id", "name", "color", "order_key", "song_parts", "singers"]
 
 
 class SingerPartSerializer(serializers.ModelSerializer):

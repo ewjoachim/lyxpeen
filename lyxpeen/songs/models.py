@@ -71,12 +71,14 @@ class Section(UUIDPkMixin, models.Model):
     """
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=6, choices=[(color, color) for color in COLORS])
+    order_key = models.IntegerField()  # To display in consistent order
 
     def __str__(self):
         return self.name
 
     class Meta:
         app_label = "songs"
+        ordering = ["order_key"]
 
 
 class SingerPart(UUIDPkMixin, models.Model):
