@@ -1,4 +1,7 @@
 from rest_framework import viewsets, exceptions
+from rest_framework.decorators import list_route
+from rest_framework.response import Response
+
 from . import serializers
 from . import models
 
@@ -11,6 +14,18 @@ class FolderViewSet(viewsets.ModelViewSet):
 class SongViewSet(viewsets.ModelViewSet):
     queryset = models.Song.objects.all()
     serializer_class = serializers.SongSerializer
+
+    @list_route(methods=['get'])
+    def random(self, request):
+        """
+        Return a random song from the top priority folder
+        """
+        # I know it's suboptimal, let's not fix until it becomes a
+        # problem and someone has a better solution.
+        queryset = self.queryset.filter(
+            folder=models.Folder.objects.latest("priority"))
+        random_song = queryset.order_by("?").first()
+        return Response(self.serializer_class(random_song).data)
 
 
 class SectionViewSet(viewsets.ModelViewSet):
