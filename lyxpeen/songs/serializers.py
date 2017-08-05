@@ -23,7 +23,7 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Song
-        fields = ["id", "folder", "name", "xml_file", "score_file", "song_parts", "files"]
+        fields = ["id", "folder", "name", "song_parts", "files"]
 
 
 class SectionSerializer(serializers.ModelSerializer):
@@ -50,4 +50,4 @@ class SingerSerializer(serializers.ModelSerializer):
 class SongFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SongFile
-        fields = ["id", "is_active", "path", "song", "is_xml", "is_score"]
+        fields = ["id", "is_active", "path", "song", "is_main_file", "is_xml", "is_score"]

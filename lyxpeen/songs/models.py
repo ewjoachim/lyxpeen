@@ -46,8 +46,6 @@ class Song(UUIDPkMixin, models.Model):
     """
     folder = models.ForeignKey(Folder, related_name="songs", on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
-    xml_file = models.ForeignKey("SongFile", null=True, related_name="+")
-    score_file = models.ForeignKey("SongFile", null=True, related_name="+")
 
     def __str__(self):
         return self.name
@@ -120,6 +118,7 @@ class SongFile(UUIDPkMixin, models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
+    is_main_file = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     is_xml = models.BooleanField(default=False)
     is_score = models.BooleanField(default=False)
